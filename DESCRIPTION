@@ -1,0 +1,14 @@
+Package: archimedR
+Type: Package
+Title: A Package To Manage ARCHIMED Simulations
+Version: 0.1.0
+Author: Remi Vezy
+Maintainer: Remi Vezy <remi.vezy@cirad.fr>
+Description: The package is made to read and set inputs parameters and meteorology, to execute the model, to import the outputs and to analyse them. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
