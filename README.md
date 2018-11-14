@@ -8,7 +8,7 @@ The package is made to read and set inputs parameters and meteorology of the ARC
 Example
 -------
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a common problem (to update):
 
 ``` r
 ## basic example code
