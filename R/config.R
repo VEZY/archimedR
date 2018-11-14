@@ -4,17 +4,18 @@
 #'
 #' @details The function uses [data.table::fread()] under the hood, so the
 #' `x` argument should match the input format as for this function.
-#' @return
-#' @export The meteo file in a more conveniant format for R usage
+#' @return The meteo file in a more conveniant format for R usage
 #'
 #' @examples
 #'  \dontrun{
 #'  import_meteo("output/meteo.csv")
 #'  }
 #'
+#' @export
 import_meteo= function(x){
+  hour_start= hour_end= n= NULL
   data.table::fread(x, data.table = F,na.strings = "")%>%
-    mutate(date= lubridate::ymd(date),
+    dplyr::mutate(date= lubridate::ymd(date),
            hour_start= lubridate::hms(hour_start),
            hour_end= lubridate::hms(hour_end),
            step= (1:n())-1,
@@ -32,7 +33,11 @@ import_meteo= function(x){
 #' @param parameter A vector or list of parameter names. If `NULL`, returns all parameters.
 #' @param format    The output format. Should be either "list" or "tibble".
 #'
-#' @details The parameter names are partially matched, so the user can retreive their values
+#' @details The `list` output format ensures that numeric parameters are treated as is. On
+#' the contrary, the [tibble::tibble()] output will return all parameters as characters if
+#' at least one is found to be character. This behavior is used to ensure a consistant expected
+#' output.
+#' The parameter names are partially matched, so the user can retreive their values
 #' without the need of perfectly knowing their names.
 #' The configuration file is named "ArchimedConfiguration.properties".
 #'
@@ -50,7 +55,7 @@ import_meteo= function(x){
 #'
 #' @export
 read_config= function(file, parameter= NULL, format= c("list","tibble")){
-
+  values_num= values= NULL
   format= match.arg(format, c("list","tibble"))
 
   config=
@@ -61,18 +66,23 @@ read_config= function(file, parameter= NULL, format= c("list","tibble")){
   splitted= strsplit(config, "=")%>%unlist
 
   Out=
-    tibble(param_names= splitted[seq_along(splitted)%%2==1],
-           values= splitted[seq_along(splitted)%%2==0])%>%
-    mutate(values_num= suppressWarnings(as.numeric(values)))%>%
-    mutate(values= ifelse(!is.na(values_num),values_num,values))%>%
-    select(-values_num)
+    tibble::tibble(param_names= splitted[seq_along(splitted)%%2==1],
+                   values= splitted[seq_along(splitted)%%2==0])%>%
+    dplyr::mutate(values_num= suppressWarnings(as.numeric(values)))
 
   if(!is.null(parameter)){
-    Out= Out[lapply(parameter, function(x){grep(x, Out$param_names)})%>%unlist,]
+    Out=
+      Out[lapply(parameter, function(x){grep(x, Out$param_names)})%>%unlist,]%>%
+      dplyr::mutate(values= ifelse(!is.na(values_num),values_num,values))%>%
+      dplyr::select(-values_num)
   }
 
   if(format=="list"){
-    tmp= as.list(Out$values)
+    tmp=
+      Out%>%dplyr::pull(values)%>%as.list()%>%
+      lapply(., function(x){
+        suppressWarnings(ifelse(is.na(as.numeric(x)),x,as.numeric(x)))
+      })
     names(tmp)= Out$param_names
     Out= tmp
   }
@@ -95,10 +105,11 @@ read_config= function(file, parameter= NULL, format= c("list","tibble")){
 #'
 #' @export
 set_config= function(file,parameter,value){
+  .= NULL
   config= readLines(file)
   param_index= grep(paste0(parameter,".{0,2}="),config)
   splitted= strsplit(config[param_index], "=")
-  param= paste0(splitted%>%unlist()%>%.[1],"=",value)
+  param= paste0(splitted%>%unlist()%>%.[1],"=", format(value, scientific= F))
   config[param_index]= param
   writeLines(config, con = file)
 }
