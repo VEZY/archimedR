@@ -4,14 +4,16 @@
 \alias{run_archimed}
 \title{Run ARCHIMED}
 \usage{
-run_archimed(path = getwd())
+run_archimed(path = getwd(), memory = 4096)
 }
 \arguments{
 \item{path}{Path to the ARCHIMED root}
+
+\item{memory}{The memory allocated to the JVM (Java Virtual Machine)}
 }
 \value{
 The function prints the model outputs to the console and returns
-\code{TRUE} if ARCHIMED ran successfully, or an error if any problem occured
+\code{TRUE} if ARCHIMED ran successfully, or an error code if any problem occured
 }
 \description{
 Run ARCHIMED

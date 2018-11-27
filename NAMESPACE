@@ -3,6 +3,8 @@
 export("%>%")
 export(import_meteo)
 export(read_config)
+export(read_out_node)
+export(read_out_plot)
 export(run_archimed)
 export(set_config)
 importFrom(magrittr,"%>%")
