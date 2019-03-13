@@ -54,12 +54,13 @@ read_out_node= function(path,duration=NULL){
   # }
   data.table::fread(path,na.strings = c("null","NaN"),fill=TRUE, data.table = F)%>%
     dplyr::full_join(duration, by="step")%>%
-    dplyr::mutate(globalIrradiation= globalIrradiance*timestep*10^-6,
-                  Global_Intercepted= globalIrradiation*area,
-                  PAR_irradiance= globalIrradiance*0.48*4.57,
-                  PAR_tot= PAR_irradiance+PARscatteredIrr*0.48,
-                  photosynthesis_rate= photosynthesis/timestep,
-                  An_leaflet= photosynthesis_rate*area)
+    dplyr::mutate(globalIrradiation= globalIrradiance*timestep*10^-6, # MJ m-2[obj] timestep-1
+                  Global_Intercepted= globalIrradiation*area,         # MJ obj-1 timestep-1
+                  PAR_irradiance= globalIrradiance*0.48*4.57,         # umol m-2[obj] s-1
+                  PAR_tot= PAR_irradiance+PARscatteredIrr*0.48,       # umol m-2[obj] s-1
+                  photosynthesis_rate= photosynthesis/timestep,       # umol[C] m-2[obj] s-1 (check)
+                  An_leaflet= photosynthesis_rate*area,               # umol[C] obj-1 s-1
+                  transpiration= transpiration*area)                  # mm obj-1 timestep-1
 }
 
 
