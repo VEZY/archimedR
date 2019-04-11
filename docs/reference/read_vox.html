@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • archimedR</title>
+<title>Read voxel file — read_vox • archimedR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,7 +31,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Read voxel file — read_vox" />
+
+<meta property="og:description" content="Read the voxel file, either input or output from ARCHIMED" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -48,7 +51,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -93,84 +96,52 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Read voxel file</h1>
+    
+    <div class="hidden name"><code>read_vox.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Read the voxel file, either input or output from ARCHIMED</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="import_meteo.html">import_meteo()</a></code> </p>
-        </td>
-        <td><p>Import ARCHIMED meteo file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_config.html">read_config()</a></code> </p>
-        </td>
-        <td><p>Read configuration</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_out_node.html">read_out_node()</a></code> </p>
-        </td>
-        <td><p>Read node-scale output</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_out_plot.html">read_out_plot()</a></code> </p>
-        </td>
-        <td><p>Read plot-scale output</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_vox.html">read_vox()</a></code> </p>
-        </td>
-        <td><p>Read voxel file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_archimed.html">run_archimed()</a></code> </p>
-        </td>
-        <td><p>Run ARCHIMED</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_config.html">set_config()</a></code> </p>
-        </td>
-        <td><p>Set the configuration</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="temperature_dynamic.html">temperature_dynamic()</a></code> </p>
-        </td>
-        <td><p>Temperature dynamic</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>read_vox</span>(<span class='no'>input</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>input</th>
+      <td><p>File path (including file name). Can also be anything compatible with
+<code><a href='https://www.rdocumentation.org/packages/data.table/topics/fread'>data.table::fread()</a></code>.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>The voxel data</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>read_vox</span>(<span class='kw'>path</span><span class='kw'>=</span> <span class='st'>"output/voxelized_scene.vox"</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

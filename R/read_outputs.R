@@ -66,3 +66,22 @@ read_out_node= function(path,duration=NULL){
 }
 
 
+
+#' Read voxel file
+#'
+#' @description Read the voxel file, either input or output from ARCHIMED
+#'
+#' @param input File path (including file name). Can also be anything compatible with
+#' `data.table::fread()`.
+#'
+#' @return The voxel data
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' read_vox(path= "output/voxelized_scene.vox")
+#' }
+#'
+read_vox= function(input){
+  data.table::fread(input,skip = 5, data.table = FALSE)
+}
