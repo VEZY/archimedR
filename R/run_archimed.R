@@ -1,6 +1,6 @@
 #' Run ARCHIMED
 #'
-#' @param path   Path to the ARCHIMED root
+#' @param exe   Path to the ARCHIMED executable file including its name
 #' @param memory The memory allocated to the JVM (Java Virtual Machine)
 #'
 #' @return The function prints the model outputs to the console and returns
@@ -9,15 +9,16 @@
 #'
 #' @examples
 #' \dontrun{
-#' run_archimed(path= "Archimed")
+#' run_archimed(path= "Archimed/archimed.jar")
 #' }
-run_archimed= function(path= getwd(), memory= 4096){
+run_archimed= function(exe= file.path(getwd(),'archimed-lib_florian-1.0.0.jar'),
+                       memory= 4096){
   wd= getwd()
-  setwd(path)
+  on.exit(setwd(wd))
+  setwd(dirname(exe))
   out= system2(command = 'java',
                args = c(paste0('-Xmx',memory,'m'),'-jar',
-                        'archimed-lib_florian-1.0.0.jar','Archimed'))
-  setwd(wd)
+                        basename(exe),'Archimed'))
   if(out==0){
     TRUE
   }else{

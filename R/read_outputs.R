@@ -20,7 +20,7 @@ read_out_plot= function(path, sheet= "Mir"){
                      "Rad_inci_glob_MJ","Rad_interc_veg_MJ","Rad_interc_veg_perc",
                      "Rad_interc_other_MJ","Rad_interc_other_perc",
                      "Rad_interc_tot_MJ","Rad_interc_tot_perc")
-    times= str_split_fixed(out$Time," -> ",n= 2)%>%
+    times= stringr::str_split_fixed(out$Time," -> ",n= 2)%>%
       lubridate::parse_date_time2(orders= 'Y/m/d  H:M')
     hour_start= times[seq_along(times)%%2==1]
     hour_end= times[seq_along(times)%%2==0]
@@ -43,6 +43,8 @@ read_out_plot= function(path, sheet= "Mir"){
 #' @return The ARCHIMED outputs for all nodes
 #' @export
 #'
+#' @importFrom rlang .data
+#'
 #' @examples
 #' \dontrun{
 #' read_out_node(path= "output/nodes_values.csv")
@@ -54,13 +56,13 @@ read_out_node= function(path,duration=NULL){
   # }
   data.table::fread(path,na.strings = c("null","NaN"),fill=TRUE, data.table = F)%>%
     dplyr::full_join(duration, by="step")%>%
-    dplyr::mutate(globalIrradiation= globalIrradiance*timestep*10^-6, # MJ m-2[obj] timestep-1
-                  Global_Intercepted= globalIrradiation*area,         # MJ obj-1 timestep-1
-                  PAR_irradiance= globalIrradiance*0.48*4.57,         # umol m-2[obj] s-1
-                  PAR_tot= PAR_irradiance+PARscatteredIrr*0.48,       # umol m-2[obj] s-1
-                  photosynthesis_rate= photosynthesis/timestep,       # umol[C] m-2[obj] s-1 (check)
-                  An_leaflet= photosynthesis_rate*area,               # umol[C] obj-1 s-1
-                  transpiration= transpiration*area)                  # mm obj-1 timestep-1
+    dplyr::mutate(globalIrradiation= .data$globalIrradiance*.data$timestep*10^-6, # MJ m-2[obj] timestep-1
+                  Global_Intercepted= .data$globalIrradiation*.data$area,   # MJ obj-1 timestep-1
+                  PAR_irradiance= .data$globalIrradiance*0.48*4.57,         # umol m-2[obj] s-1
+                  PAR_tot= .data$PAR_irradiance+.data$PARscatteredIrr*0.48,       # umol m-2[obj] s-1
+                  photosynthesis_rate= .data$photosynthesis/.data$timestep, # umol[C] m-2[obj] s-1 (check)
+                  An_leaflet= .data$photosynthesis_rate*.data$area,               # umol[C] obj-1 s-1
+                  transpiration= .data$transpiration*.data$area)            # mm obj-1 timestep-1
 }
 
 

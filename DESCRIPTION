@@ -21,4 +21,7 @@ Imports:
     lubridate,
     tidyr,
     dplyr,
-    tibble
+    tibble,
+    readxl,
+    rlang,
+    stringr

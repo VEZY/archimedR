@@ -29,7 +29,7 @@
 #'
 #' @export
 read_config= function(file, parameter= NULL, format= c("list","tibble")){
-  values_num= values= NULL
+  values_num= values= .= NULL
   format= match.arg(format, c("list","tibble"))
 
   config=

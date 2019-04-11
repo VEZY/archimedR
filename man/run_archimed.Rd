@@ -4,10 +4,11 @@
 \alias{run_archimed}
 \title{Run ARCHIMED}
 \usage{
-run_archimed(path = getwd(), memory = 4096)
+run_archimed(exe = file.path(getwd(), "archimed-lib_florian-1.0.0.jar"),
+  memory = 4096)
 }
 \arguments{
-\item{path}{Path to the ARCHIMED root}
+\item{exe}{Path to the ARCHIMED executable file including its name}
 
 \item{memory}{The memory allocated to the JVM (Java Virtual Machine)}
 }
@@ -20,6 +21,6 @@ Run ARCHIMED
 }
 \examples{
 \dontrun{
-run_archimed(path= "Archimed")
+run_archimed(path= "Archimed/archimed.jar")
 }
 }
