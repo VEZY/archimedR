@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read voxel file — read_vox • archimedR</title>
+<title>Read voxel space — read_voxel_space • archimedR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,9 +31,9 @@
 
 
 
-<meta property="og:title" content="Read voxel file — read_vox" />
+<meta property="og:title" content="Read voxel space — read_voxel_space" />
 
-<meta property="og:description" content="Read the voxel file, either input or output from ARCHIMED" />
+<meta property="og:description" content="Read the voxel space from a .vox file" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,18 +98,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read voxel file</h1>
+    <h1>Read voxel space</h1>
     
-    <div class="hidden name"><code>read_vox.Rd</code></div>
+    <div class="hidden name"><code>read_voxel_space.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Read the voxel file, either input or output from ARCHIMED</p>
+    <p>Read the voxel space from a <code>.vox</code> file</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_vox</span>(<span class='no'>input</span>)</pre>
+    <pre class="usage"><span class='fu'>read_voxel_space</span>(<span class='no'>input</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,22 +123,17 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The voxel data</p>
+    <p>The voxel space</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function uses <code><a href='read_voxel_space.html'>read_voxel_space()</a></code> to find the voxel space and set it as an
-attribute: <code>voxel_space</code>.</p>
+    <p>This function uses <code><a href='voxel_space.html'>voxel_space()</a></code> to compute the voxel space from the data</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Read a voxel file:</span>
-<span class='no'>vox</span><span class='kw'>=</span> <span class='fu'>read_vox</span>(<span class='kw'>path</span><span class='kw'>=</span> <span class='st'>"output/voxelized_scene.vox"</span>)
-<span class='co'># Find the voxel space:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>vox</span>, <span class='st'>"voxel_space"</span>)
-<span class='co'># }</span><div class='input'>
-</div></pre>
+<span class='fu'>read_voxel_space</span>(<span class='kw'>input</span><span class='kw'>=</span> <span class='st'>"output/voxelized_scene.vox"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
