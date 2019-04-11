@@ -5,12 +5,15 @@
 \title{Run ARCHIMED}
 \usage{
 run_archimed(exe = file.path(getwd(), "archimed-lib_florian-1.0.0.jar"),
-  memory = 4096)
+  memory = 4096, config = NULL)
 }
 \arguments{
 \item{exe}{Path to the ARCHIMED executable file including its name}
 
-\item{memory}{The memory allocated to the JVM (Java Virtual Machine)}
+\item{memory}{The memory allocated to the JVM (Java Virtual Machine) in megabytes}
+
+\item{config}{The configuration file. The function tries to find it if not provided. If the function
+finds no configuration file, or several, it exits and returns \code{FALSE}.}
 }
 \value{
 The function prints the model outputs to the console and returns
@@ -19,8 +22,13 @@ The function prints the model outputs to the console and returns
 \description{
 Run ARCHIMED
 }
+\note{
+If you are using a version of ARCHIMED prior to 2018, you need to pass
+\code{Archimed} in the configuration file, such as
+\code{run_archimed(path= "archimed.jar", config= "Archimed app_parameters/ArchimedConfiguration.properties")}
+}
 \examples{
 \dontrun{
-run_archimed(path= "Archimed/archimed.jar")
+run_archimed(path= "Archimed/archimed.jar", config= "app_parameters/config.properties")
 }
 }
