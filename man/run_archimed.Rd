@@ -10,7 +10,7 @@ run_archimed(exe = file.path(getwd(), "archimed-lib_florian-1.0.0.jar"),
 \arguments{
 \item{exe}{Path to the ARCHIMED executable file including its name}
 
-\item{memory}{The memory allocated to the JVM (Java Virtual Machine) in megabytes}
+\item{memory}{The memory allocated to the JVM (Java Virtual Machine) in megabytes (see details)}
 
 \item{config}{The configuration file. The function tries to find it if not provided. If the function
 finds no configuration file, or several, it exits and returns \code{FALSE}.}
@@ -21,6 +21,10 @@ The function prints the model outputs to the console and returns
 }
 \description{
 Run ARCHIMED
+}
+\details{
+The \code{memory} actually used to run ARCHIMED is the minimum between the input \code{memory} and
+the available memory on the system (see \code{get_free_ram()})
 }
 \note{
 If you are using a version of ARCHIMED prior to 2018, you need to pass
