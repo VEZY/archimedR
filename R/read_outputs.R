@@ -36,10 +36,7 @@ read_out_plot= function(path, sheet= "Mir"){
 #' @description Read the ARCHIMED output at node-scale
 #'
 #' @param path      File path
-#' @param duration  data.frame of two columns: the time-step, and its duration in seconds
 #'
-#' @details the duration data.frame must have two columns: step (step index) and timestep
-#' (duration in seconds)
 #' @return The ARCHIMED outputs for all nodes
 #' @export
 #'
@@ -50,10 +47,7 @@ read_out_plot= function(path, sheet= "Mir"){
 #' read_out_node(path= "output/nodes_values.csv")
 #' }
 #'
-read_out_node= function(path,duration=NULL){
-  # if(is.null(duration)){
-  #   import_meteo()
-  # }
+read_out_node= function(path){
   data.table::fread(path,na.strings = c("null","NaN"),fill=TRUE, data.table = F)%>%
     dplyr::full_join(duration, by="step")%>%
     dplyr::mutate(globalIrradiation= .data$globalIrradiance*.data$timestep*10^-6, # MJ m-2[obj] timestep-1

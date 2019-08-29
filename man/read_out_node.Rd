@@ -4,22 +4,16 @@
 \alias{read_out_node}
 \title{Read node-scale output}
 \usage{
-read_out_node(path, duration = NULL)
+read_out_node(path)
 }
 \arguments{
 \item{path}{File path}
-
-\item{duration}{data.frame of two columns: the time-step, and its duration in seconds}
 }
 \value{
 The ARCHIMED outputs for all nodes
 }
 \description{
 Read the ARCHIMED output at node-scale
-}
-\details{
-the duration data.frame must have two columns: step (step index) and timestep
-(duration in seconds)
 }
 \examples{
 \dontrun{

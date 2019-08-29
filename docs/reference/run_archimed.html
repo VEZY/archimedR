@@ -121,7 +121,7 @@
     </tr>
     <tr>
       <th>memory</th>
-      <td><p>The memory allocated to the JVM (Java Virtual Machine) in megabytes</p></td>
+      <td><p>The memory allocated to the JVM (Java Virtual Machine) in megabytes (see details)</p></td>
     </tr>
     <tr>
       <th>config</th>
@@ -134,6 +134,11 @@ finds no configuration file, or several, it exits and returns <code>FALSE</code>
 
     <p>The function prints the model outputs to the console and returns
 <code>TRUE</code> if ARCHIMED ran successfully, or an error code if any problem occured</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The <code>memory</code> actually used to run ARCHIMED is the minimum between the input <code>memory</code> and
+the available memory on the system (see <code><a href='get_free_ram.html'>get_free_ram()</a></code>)</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -153,6 +158,8 @@ finds no configuration file, or several, it exits and returns <code>FALSE</code>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
       

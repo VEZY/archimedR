@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • archimedR</title>
+<title>Get available RAM — get_free_ram • archimedR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,7 +31,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get available RAM — get_free_ram" />
+
+<meta property="og:description" content="Get the RAM available on the system" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -48,7 +51,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -93,102 +96,45 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get available RAM</h1>
+    
+    <div class="hidden name"><code>get_free_ram.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Get the RAM available on the system</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_free_ram</span>()</pre>
+        
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="get_free_ram.html">get_free_ram()</a></code> </p>
-        </td>
-        <td><p>Get available RAM</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="import_meteo.html">import_meteo()</a></code> </p>
-        </td>
-        <td><p>Import ARCHIMED meteo file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_config.html">read_config()</a></code> </p>
-        </td>
-        <td><p>Read configuration</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_out_node.html">read_out_node()</a></code> </p>
-        </td>
-        <td><p>Read node-scale output</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_out_plot.html">read_out_plot()</a></code> </p>
-        </td>
-        <td><p>Read plot-scale output</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_vox.html">read_vox()</a></code> </p>
-        </td>
-        <td><p>Read voxel file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_voxel_space.html">read_voxel_space()</a></code> </p>
-        </td>
-        <td><p>Read voxel space</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_archimed.html">run_archimed()</a></code> </p>
-        </td>
-        <td><p>Run ARCHIMED</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_config.html">set_config()</a></code> </p>
-        </td>
-        <td><p>Set the configuration</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="temperature_dynamic.html">temperature_dynamic()</a></code> </p>
-        </td>
-        <td><p>Temperature dynamic</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="voxel_space.html">voxel_space()</a></code> </p>
-        </td>
-        <td><p>Voxel space</p></td>
-      </tr>
-    </tbody>
-    </table>
+    <p>The amount of RAM available on the system in megabytes</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The function calls wmic for windows and awk for Linux. It is not
+compatible with Mac OS yet.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>get_free_ram</span>()</div><div class='output co'>#&gt; [1] 13854</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

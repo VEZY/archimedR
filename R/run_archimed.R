@@ -44,6 +44,12 @@ run_archimed= function(exe= file.path(getwd(),'archimed-lib_florian-1.0.0.jar'),
 
   }
   if(mem<1024){stop("Not enough memory available on the system to run ARCHIMED")}
+
+  # Test if there are some white spaces in the config path, and if so double quote it:
+  if(grepl(" ",config)){
+    config= paste0("\"",config,"\"")
+  }
+
   out= system2(command = 'java',
                args = c(paste0('-Xmx',min(memory,get_free_ram()),'m'),'-jar',
                         basename(exe), config))
