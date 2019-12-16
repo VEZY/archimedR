@@ -36,7 +36,7 @@ read_config= function(file, parameter= NULL, format= c("list","tibble")){
     readLines(file)%>%
     .[grep("=",.)]%>%
     gsub("\t","",.)%>%
-    .[-grep("^#", .)]
+    .[!grepl("^#", .)]
 
   splitted= strsplit(config, "=")%>%unlist
 
