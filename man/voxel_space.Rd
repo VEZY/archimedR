@@ -4,8 +4,12 @@
 \alias{voxel_space}
 \title{Voxel space}
 \usage{
-voxel_space(coord_min = c(0, 0, 0), voxel_size = NULL,
-  n_voxel = NULL, coord_max = NULL)
+voxel_space(
+  coord_min = c(0, 0, 0),
+  voxel_size = NULL,
+  n_voxel = NULL,
+  coord_max = NULL
+)
 }
 \arguments{
 \item{coord_min}{Vector of the minimum 3D coordinates of the voxel space (point of origin, see details)}

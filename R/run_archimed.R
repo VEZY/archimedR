@@ -1,10 +1,10 @@
 #' Run ARCHIMED
 #'
-#' @param exe   Path to the ARCHIMED executable file including its name
+#' @param exe    Path to the ARCHIMED executable file including its name
 #' @param memory The memory allocated to the JVM (Java Virtual Machine) in megabytes (see details)
 #' @param config The configuration file. The function tries to find it if not provided. If the function
 #' finds no configuration file, or several, it exits and returns `FALSE`.
-#'
+#' @param args   Further arguments to pass to the ARCHIMED app
 #'
 #' @details The `memory` actually used to run ARCHIMED is the minimum between the input `memory` and
 #' the available memory on the system (see `get_free_ram()`)
@@ -21,8 +21,9 @@
 #' \dontrun{
 #' run_archimed(path= "Archimed/archimed.jar", config= "app_parameters/config.properties")
 #' }
-run_archimed= function(exe= file.path(getwd(),'archimed-lib_florian-1.0.0.jar'),
-                       memory= 4096, config= NULL){
+run_archimed= function(exe= file.path(getwd(),'archimed.jar'),
+                       memory= 4096, config= NULL,
+                       args= NULL){
   .= NULL
   wd= getwd()
   on.exit(setwd(wd))
@@ -41,7 +42,6 @@ run_archimed= function(exe= file.path(getwd(),'archimed-lib_florian-1.0.0.jar'),
   if(mem<memory){
     warning(paste("Not enough memory available on the system. Requested:",crayon::red(memory),
                   "Mo, memory actually allocated to ARCHIMED:"),crayon::red(mem)," Mo")
-
   }
   if(mem<1024){stop("Not enough memory available on the system to run ARCHIMED")}
 
@@ -52,7 +52,7 @@ run_archimed= function(exe= file.path(getwd(),'archimed-lib_florian-1.0.0.jar'),
 
   out= system2(command = 'java',
                args = c(paste0('-Xmx',min(memory,get_free_ram()),'m'),'-jar',
-                        basename(exe), config))
+                        basename(exe), config, paste0("--",args)))
   if(out==0){
     TRUE
   }else{

@@ -4,8 +4,12 @@
 \alias{run_archimed}
 \title{Run ARCHIMED}
 \usage{
-run_archimed(exe = file.path(getwd(), "archimed-lib_florian-1.0.0.jar"),
-  memory = 4096, config = NULL)
+run_archimed(
+  exe = file.path(getwd(), "archimed.jar"),
+  memory = 4096,
+  config = NULL,
+  args = NULL
+)
 }
 \arguments{
 \item{exe}{Path to the ARCHIMED executable file including its name}
@@ -14,6 +18,8 @@ run_archimed(exe = file.path(getwd(), "archimed-lib_florian-1.0.0.jar"),
 
 \item{config}{The configuration file. The function tries to find it if not provided. If the function
 finds no configuration file, or several, it exits and returns \code{FALSE}.}
+
+\item{args}{Further arguments to pass to the ARCHIMED app}
 }
 \value{
 The function prints the model outputs to the console and returns
