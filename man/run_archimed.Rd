@@ -8,7 +8,8 @@ run_archimed(
   exe = file.path(getwd(), "archimed.jar"),
   memory = 4096,
   config = NULL,
-  args = NULL
+  args = NULL,
+  java = NULL
 )
 }
 \arguments{
@@ -20,6 +21,8 @@ run_archimed(
 finds no configuration file, or several, it exits and returns \code{FALSE}.}
 
 \item{args}{Further arguments to pass to the ARCHIMED app}
+
+\item{java}{Java path (optionnal, see details)}
 }
 \value{
 The function prints the model outputs to the console and returns
@@ -30,7 +33,9 @@ Run ARCHIMED
 }
 \details{
 The \code{memory} actually used to run ARCHIMED is the minimum between the input \code{memory} and
-the available memory on the system (see \code{get_free_ram()})
+the available memory on the system (see \code{get_free_ram()}). The \code{java} argument can be a path to the java
+executable if the user needs a particular version (for example if the default Java used is the Open JDK,
+because ARCHIMED is only compatible with the Oracle version).
 }
 \note{
 If you are using a version of ARCHIMED prior to 2018, you need to pass

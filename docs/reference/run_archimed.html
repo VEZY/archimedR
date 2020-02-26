@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">archimedR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -116,7 +116,8 @@
   <span class='kw'>exe</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(), <span class='st'>"archimed.jar"</span>),
   <span class='kw'>memory</span> <span class='kw'>=</span> <span class='fl'>4096</span>,
   <span class='kw'>config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>java</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -139,6 +140,10 @@ finds no configuration file, or several, it exits and returns <code>FALSE</code>
       <th>args</th>
       <td><p>Further arguments to pass to the ARCHIMED app</p></td>
     </tr>
+    <tr>
+      <th>java</th>
+      <td><p>Java path (optionnal, see details)</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -148,7 +153,9 @@ finds no configuration file, or several, it exits and returns <code>FALSE</code>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The <code>memory</code> actually used to run ARCHIMED is the minimum between the input <code>memory</code> and
-the available memory on the system (see <code><a href='get_free_ram.html'>get_free_ram()</a></code>)</p>
+the available memory on the system (see <code><a href='get_free_ram.html'>get_free_ram()</a></code>). The <code>java</code> argument can be a path to the java
+executable if the user needs a particular version (for example if the default Java used is the Open JDK,
+because ARCHIMED is only compatible with the Oracle version).</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>If you are using a version of ARCHIMED prior to 2018, you need to pass

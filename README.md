@@ -40,7 +40,7 @@ import_meteo("output/meteo.csv")
 To run ARCHIMED from R, you can use this command:
 
 ``` r
-run_archimed(path= "Archimed", memory = 4096)
+run_archimed(exe = "archimed.jar", memory = 4096, config= "app.parameters")
 ```
 
 The memory argument allocate some space from the RAM to the JVM (Java

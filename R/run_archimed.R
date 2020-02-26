@@ -5,9 +5,12 @@
 #' @param config The configuration file. The function tries to find it if not provided. If the function
 #' finds no configuration file, or several, it exits and returns `FALSE`.
 #' @param args   Further arguments to pass to the ARCHIMED app
+#' @param java   Java path (optionnal, see details)
 #'
 #' @details The `memory` actually used to run ARCHIMED is the minimum between the input `memory` and
-#' the available memory on the system (see `get_free_ram()`)
+#' the available memory on the system (see `get_free_ram()`). The `java` argument can be a path to the java
+#' executable if the user needs a particular version (for example if the default Java used is the Open JDK,
+#' because ARCHIMED is only compatible with the Oracle version).
 #'
 #' @return The function prints the model outputs to the console and returns
 #' `TRUE` if ARCHIMED ran successfully, or an error code if any problem occured
@@ -23,10 +26,15 @@
 #' }
 run_archimed= function(exe= file.path(getwd(),'archimed.jar'),
                        memory= 4096, config= NULL,
-                       args= NULL){
+                       args= NULL,java=NULL){
   .= NULL
   wd= getwd()
   on.exit(setwd(wd))
+
+  if(is.null(java)){
+    java= "java"
+  }
+
   if(is.null(config)){
     config=
       list.files(getwd(),recursive = TRUE)%>%
@@ -50,7 +58,7 @@ run_archimed= function(exe= file.path(getwd(),'archimed.jar'),
     config= paste0("\"",config,"\"")
   }
 
-  out= system2(command = 'java',
+  out= system2(command = java,
                args = c(paste0('-Xmx',min(memory,get_free_ram()),'m'),'-jar',
                         basename(exe), config, paste0("--",args)))
   if(out==0){
