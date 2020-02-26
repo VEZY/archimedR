@@ -1,0 +1,8 @@
+# T xOrigin yOrigin zOrigin xSize ySize flat
+T 0 0 0 9.21 15.952 flat
+#[Archimed] two
+#sceneId plantId plantFileName x y z scale inclinationAzimut inclinationAngle stemTwist
+1	1	opf/DA1_Average_MAP_36.opf	2.3	3.99	0	1	0	0	0
+1	2	opf/DA1_Average_MAP_36.opf	6.9	11.96	0	1	0	0	0
+#motherId sceneId date
+-1	1	1

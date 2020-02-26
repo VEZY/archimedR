@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read configuration — read_config • archimedR</title>
+<title>Write ops file — write_ops • archimedR</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,8 @@
 
 
 
-<meta property="og:title" content="Read configuration — read_config" />
-<meta property="og:description" content="Read the ARCHIMED configuration file parameters and
-return one, several or all parameters as a list or as a tibble::tibble()" />
+<meta property="og:title" content="Write ops file — write_ops" />
+<meta property="og:description" content="Write ops file" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,57 +103,61 @@ return one, several or all parameters as a list or as a tibble::tibble()" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read configuration</h1>
+    <h1>Write ops file</h1>
     
-    <div class="hidden name"><code>read_config.Rd</code></div>
+    <div class="hidden name"><code>write_ops.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Read the ARCHIMED configuration file parameters and
-return one, several or all parameters as a list or as a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code></p>
+    <p>Write ops file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_config</span>(<span class='no'>file</span>, <span class='kw'>parameter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"list"</span>, <span class='st'>"tibble"</span>))</pre>
+    <pre class="usage"><span class='fu'>write_ops</span>(<span class='no'>data</span>, <span class='no'>file</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>data</th>
+      <td><p>the data for the ops file, typically the output from <code><a href='read_ops.html'>read_ops()</a></code> (see details).</p></td>
+    </tr>
+    <tr>
       <th>file</th>
-      <td><p>The path to the ARCHIMED configuration file</p></td>
-    </tr>
-    <tr>
-      <th>parameter</th>
-      <td><p>A vector or list of parameter names. If <code>NULL</code>, returns all parameters.</p></td>
-    </tr>
-    <tr>
-      <th>format</th>
-      <td><p>The output format. Should be either "list" or "tibble".</p></td>
+      <td><p>the path to the ops file</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The ARCHIMED configuration parameters as a list or a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code></p>
+    
+
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The <code>list</code> output format ensures that numeric parameters are treated as is. On
-the contrary, the <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> output will return all parameters as characters if
-at least one is found to be character. This behavior is used to ensure a consistant expected
-output.
-The parameter names are partially matched, so the user can retreive their values
-without the need of perfectly knowing their names.
-The configuration file is named "ArchimedConfiguration.properties".</p>
+    <p>The <code>data</code> argument expects a list of two <code>data.frame</code>s:</p><ul>
+<li><p>dimensions: the plot dimensions (xmin, ymin, zmin, xmax, ymax);</p></li>
+<li><p>plants: a <code>data.frame</code> with the format:</p><table class='table'>
+<tr><td><em>sceneId</em></td><td><em>plantId</em></td><td><em>plantFileName</em></td><td>x</td><td>y</td><td>z</td><td>scale</td><td>inclinationAzimut</td><td>inclinationAngle</td><td>stemTwist</td><td>Functional_group</td></tr>
+<tr><td>1</td><td>1</td><td>opf/DA1_Average_MAP_12.opf</td><td>2.3025</td><td>3.988</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>two</td></tr>
+<tr><td>1</td><td>2</td><td>opf/DA1_Average_MAP_12.opf</td><td>6.9075</td><td>11.964</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>two</td></tr>
+</table>
+</li>
+<li><p>and optionaly a chaining line, e.g. -1 1 1.</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
- <span class='co'># Read two parameters, with partial matching (latit instead of latitude):</span>
- <span class='fu'>read_config</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"Archimed_July_2018/app_parameters/ArchimedConfiguration.properties"</span>,
-             <span class='kw'>parameter</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"latit"</span>,<span class='st'>"altitude"</span>))
- <span class='co'># read all parameters:</span>
- <span class='fu'>read_config</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"Archimed_July_2018/app_parameters/ArchimedConfiguration.properties"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyverse</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>archimedR</span>)
 
- }</div></pre>
+<span class='co'># Read the OPS:</span>
+<span class='no'>OPS</span><span class='kw'>=</span> <span class='fu'><a href='read_ops.html'>read_ops</a></span>(<span class='st'>"dummy.ops"</span>)
+<span class='co'># Increase the position of the plants by 0.5 meter:</span>
+<span class='no'>OPS</span>$<span class='no'>plants</span><span class='kw'>=</span> <span class='no'>OPS</span>$<span class='no'>plants</span>
+<span class='co'># Write the new OPS:</span>
+<span class='fu'>write_ops</span>(<span class='no'>OPS</span>, <span class='st'>"dummy2.ops"</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
